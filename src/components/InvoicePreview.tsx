@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { InvoiceData } from '@/lib/types';
 import { calculateSubtotal, calculateTax, calculateTotal, formatCurrency, formatDate } from '@/lib/utils';
 
@@ -10,6 +10,7 @@ interface InvoicePreviewProps {
 
 export default function InvoicePreview({ data }: InvoicePreviewProps) {
   const invoiceRef = useRef<HTMLDivElement>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const subtotal = calculateSubtotal(data.items);
   const tax = calculateTax(subtotal, data.taxRate);
@@ -27,24 +28,119 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
     minimal: 'bg-white text-gray-900 border-b border-gray-200',
   };
 
-  const handleDownloadPDF = async () => {
+  const handleDownloadPDF = () => {
     if (!invoiceRef.current) return;
-    const html2canvas = (await import('html2canvas')).default;
-    const { jsPDF } = await import('jspdf');
+    
+    // Use browser's native print to PDF functionality
+    const printWindow = window.open('', '', 'height=800,width=600');
+    if (!printWindow) {
+      alert('Please allow popups to download PDF');
+      return;
+    }
 
-    const canvas = await html2canvas(invoiceRef.current, {
-      scale: 2,
-      useCORS: true,
-      logging: false,
-    });
-
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save(`${data.invoiceNumber}.pdf`);
+    // Get the invoice HTML
+    const invoiceHTML = invoiceRef.current.outerHTML;
+    
+    // Create a complete HTML document with styles
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>${data.invoiceNumber || 'Invoice'}</title>
+          <style>
+            @page {
+              size: A4;
+              margin: 0;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            }
+            * {
+              box-sizing: border-box;
+            }
+            /* Tailwind-like utility classes */
+            .bg-white { background-color: white; }
+            .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+            .rounded-lg { border-radius: 0.5rem; }
+            .overflow-hidden { overflow: hidden; }
+            .border-t-4 { border-top-width: 4px; }
+            .border-t-2 { border-top-width: 2px; }
+            .border-blue-600 { border-color: #2563eb; }
+            .border-gray-800 { border-color: #1f2937; }
+            .border-gray-300 { border-color: #d1d5db; }
+            .border-b { border-bottom-width: 1px; }
+            .border-b-2 { border-bottom-width: 2px; }
+            .border-gray-200 { border-color: #e5e7eb; }
+            .border-gray-100 { border-color: #f3f4f6; }
+            .px-8 { padding-left: 2rem; padding-right: 2rem; }
+            .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+            .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+            .mb-8 { margin-bottom: 2rem; }
+            .mt-8 { margin-top: 2rem; }
+            .pt-6 { padding-top: 1.5rem; }
+            .flex { display: flex; }
+            .grid { display: grid; }
+            .justify-between { justify-content: space-between; }
+            .justify-end { justify-content: flex-end; }
+            .items-start { align-items: flex-start; }
+            .text-left { text-align: left; }
+            .text-center { text-align: center; }
+            .text-right { text-align: right; }
+            .w-full { width: 100%; }
+            .w-72 { width: 18rem; }
+            .w-20 { width: 5rem; }
+            .w-28 { width: 7rem; }
+            .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .gap-6 { gap: 1.5rem; }
+            .space-y-2 > * + * { margin-top: 0.5rem; }
+            .text-xs { font-size: 0.75rem; }
+            .text-sm { font-size: 0.875rem; }
+            .text-lg { font-size: 1.125rem; }
+            .text-xl { font-size: 1.25rem; }
+            .font-bold { font-weight: 700; }
+            .font-medium { font-weight: 500; }
+            .font-semibold { font-weight: 600; }
+            .uppercase { text-transform: uppercase; }
+            .tracking-wider { letter-spacing: 0.05em; }
+            .whitespace-pre-line { white-space: pre-line; }
+            .text-white { color: white; }
+            .text-gray-900 { color: #111827; }
+            .text-gray-700 { color: #374151; }
+            .text-gray-600 { color: #4b5563; }
+            .text-gray-500 { color: #6b7280; }
+            .text-gray-400 { color: #9ca3af; }
+            .text-red-600 { color: #dc2626; }
+            .text-blue-600 { color: #2563eb; }
+            .bg-blue-600 { background-color: #2563eb; }
+            .bg-gray-800 { background-color: #1f2937; }
+            .opacity-80 { opacity: 0.8; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { padding: 0.75rem; }
+            @media print {
+              body { margin: 0; }
+              .no-print { display: none; }
+            }
+          </style>
+        </head>
+        <body>
+          ${invoiceHTML}
+          <script>
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+                setTimeout(function() {
+                  window.close();
+                }, 100);
+              }, 500);
+            };
+          </script>
+        </body>
+      </html>
+    `);
+    
+    printWindow.document.close();
   };
 
   return (
