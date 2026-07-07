@@ -19,6 +19,20 @@ export const metadata: Metadata = {
     description: 'Create professional invoices in seconds. Free, no signup required. Download as PDF.',
     type: 'website',
     locale: 'en_US',
+    images: [
+      {
+        url: 'https://invoicegen.top/api/og?title=Free%20Invoice%20Generator&subtitle=Create%20professional%20invoices%20in%20seconds',
+        width: 1200,
+        height: 630,
+        alt: 'InvoiceGen - Free Invoice Generator',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Invoice Generator - Create Professional Invoices Online',
+    description: 'Create professional invoices in seconds. Free, no signup required. Download as PDF.',
+    images: ['https://invoicegen.top/api/og?title=Free%20Invoice%20Generator&subtitle=Create%20professional%20invoices%20in%20seconds'],
   },
   robots: {
     index: true,
