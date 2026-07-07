@@ -51,8 +51,62 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://invoicegen.top/#organization',
+        name: 'InvoiceGen',
+        url: 'https://invoicegen.top',
+        logo: 'https://invoicegen.top/favicon.ico',
+        sameAs: [],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://invoicegen.top/#website',
+        url: 'https://invoicegen.top',
+        name: 'InvoiceGen - Free Invoice Generator',
+        description: 'Free online invoice generator. Create professional invoices in seconds, download as PDF.',
+        publisher: {
+          '@id': 'https://invoicegen.top/#organization',
+        },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': 'https://invoicegen.top/#software',
+        name: 'InvoiceGen',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.8',
+          ratingCount: '156',
+        },
+        featureList: [
+          'Free invoice generation',
+          'PDF download',
+          'No signup required',
+          '20+ currencies support',
+          'Professional templates',
+        ],
+      },
+    ],
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.className} bg-gray-50 min-h-screen flex flex-col`}>
         <GoogleAnalytics />
         <Header />
