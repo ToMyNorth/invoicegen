@@ -1,3 +1,53 @@
+# 🧾 InvoiceGen — Free Invoice Generator
+
+**Create professional invoices in seconds. No signup, no watermarks, 100% free.**
+
+👉 **[invoicegen.top](https://invoicegen.top)**
+
+![InvoiceGen](https://invoicegen.top/og-default.png)
+
+## ✨ Features
+
+- **Instant Invoice Creation** — Fill in your details and generate a professional invoice immediately
+- **Multiple Currencies** — Support for USD, EUR, GBP, CNY, JPY, and 20+ currencies
+- **Tax & Discount** — Configurable tax rates, discounts, and line-item details
+- **PDF Export** — Download invoices as high-quality PDF files
+- **Print-Friendly** — Optimized layout for direct printing
+- **Local Storage** — All data stays in your browser, nothing uploaded to servers
+- **Zero Signup** — No account required, no email needed, completely free
+- **Mobile Friendly** — Responsive design works on any device
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS v4
+- **Language**: TypeScript
+- **Deployment**: Vercel
+- **Architecture**: Pure frontend, zero API costs
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/ToMyNorth/invoicegen.git
+
+# Install dependencies
+cd invoicegen
+npm install
+
+# Run development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🌐 Live
+
+**[invoicegen.top](https://invoicegen.top)** — Free, no signup required.
+
+## 📝 License
+
+MIT
 # InvoiceGen - Free Invoice Generator for Freelancers 🧾
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://invoicegen.top)
