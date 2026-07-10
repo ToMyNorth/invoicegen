@@ -1,3 +1,71 @@
+# InvoiceGen — Free Invoice Generator
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://invoicegen.one)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+**Create professional invoices in seconds. No signup, no watermarks, 100% free.**
+
+Visit **[invoicegen.one](https://invoicegen.one)** — no installation needed!
+
+## Features
+
+- **Instant Generation** — Create invoices in under 30 seconds
+- **20+ Currencies** — USD, EUR, GBP, JPY, AUD, CAD, and more
+- **6 Professional Templates** — Simple, Professional, Freelance, Service, Blank, Proforma
+- **Country-Specific** — Auto tax labels (VAT, GST, MwSt, etc.) for 20 countries
+- **Industry Presets** — Freelancer, Consultant, Designer, Developer, Contractor
+- **PDF Export** — One-click PDF download via browser print
+- **Privacy-First** — 100% client-side, zero tracking, no data stored
+- **Completely Free** — No watermarks, no limits, no account needed
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router), React 19
+- **Styling**: Tailwind CSS v4
+- **Language**: TypeScript
+- **Deployment**: Vercel
+- **SEO**: Programmatic SEO with 60+ static landing pages
+
+## Programmatic SEO
+
+This project uses 4 route templates to generate 60+ unique pages:
+
+| Dimension | Pages | Example |
+|-----------|-------|---------|
+| Currency | 20 | `/invoice/usd`, `/invoice/eur` |
+| Country | 20 | `/country/united-states`, `/country/united-kingdom` |
+| Industry | 14 | `/industry/freelancer`, `/industry/consultant` |
+| Template | 6 | `/templates/professional-invoice` |
+
+## Quick Start
+
+```bash
+git clone https://github.com/ToMyNorth/invoicegen.git
+cd invoicegen
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+**Built with ❤️ for freelancers who hate paperwork**
+
+Made by [@ToMyNorth](https://github.com/ToMyNorth)
 # 🧾 InvoiceGen — Free Invoice Generator
 
 **Create professional invoices in seconds. No signup, no watermarks, 100% free.**
