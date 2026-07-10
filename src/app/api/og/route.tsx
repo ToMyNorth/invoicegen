@@ -83,7 +83,7 @@ export async function GET(request: Request) {
               color: '#9ca3af',
             }}
           >
-            <span>invoicegen.top</span>
+            <span>invoicegen.one</span>
             <span>Free • No Signup • Download PDF</span>
           </div>
         </div>

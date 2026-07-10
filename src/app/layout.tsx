@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: 'https://invoicegen.top/api/og?title=Free%20Invoice%20Generator&subtitle=Create%20professional%20invoices%20in%20seconds',
+        url: 'https://invoicegen.one/api/og?title=Free%20Invoice%20Generator&subtitle=Create%20professional%20invoices%20in%20seconds',
         width: 1200,
         height: 630,
         alt: 'InvoiceGen - Free Invoice Generator',
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Free Invoice Generator - Create Professional Invoices Online',
     description: 'Create professional invoices in seconds. Free, no signup required. Download as PDF.',
-    images: ['https://invoicegen.top/api/og?title=Free%20Invoice%20Generator&subtitle=Create%20professional%20invoices%20in%20seconds'],
+    images: ['https://invoicegen.one/api/og?title=Free%20Invoice%20Generator&subtitle=Create%20professional%20invoices%20in%20seconds'],
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: 'https://invoicegen.top',
+    canonical: 'https://invoicegen.one',
   },
   verification: {
     google: 'YOUR_GOOGLE_VERIFICATION_CODE_HERE', // Replace with actual code from GSC
@@ -56,25 +56,25 @@ export default function RootLayout({
     '@graph': [
       {
         '@type': 'Organization',
-        '@id': 'https://invoicegen.top/#organization',
+        '@id': 'https://invoicegen.one/#organization',
         name: 'InvoiceGen',
-        url: 'https://invoicegen.top',
-        logo: 'https://invoicegen.top/favicon.ico',
+        url: 'https://invoicegen.one',
+        logo: 'https://invoicegen.one/favicon.ico',
         sameAs: [],
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://invoicegen.top/#website',
-        url: 'https://invoicegen.top',
+        '@id': 'https://invoicegen.one/#website',
+        url: 'https://invoicegen.one',
         name: 'InvoiceGen - Free Invoice Generator',
         description: 'Free online invoice generator. Create professional invoices in seconds, download as PDF.',
         publisher: {
-          '@id': 'https://invoicegen.top/#organization',
+          '@id': 'https://invoicegen.one/#organization',
         },
       },
       {
         '@type': 'SoftwareApplication',
-        '@id': 'https://invoicegen.top/#software',
+        '@id': 'https://invoicegen.one/#software',
         name: 'InvoiceGen',
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',

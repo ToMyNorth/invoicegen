@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { currencies, countries, industries } from '@/data/invoice-data';
 
-const BASE_URL = 'https://invoicegen.top';
+const BASE_URL = 'https://invoicegen.one';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

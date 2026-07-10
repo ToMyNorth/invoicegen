@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://invoicegen.top/sitemap.xml
+Sitemap: https://invoicegen.one/sitemap.xml
 
 # Disallow admin/private paths (if any)
 # Disallow: /admin/
