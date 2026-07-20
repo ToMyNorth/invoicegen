@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const i = getIndustry(industry);
   if (!i) return {};
   return {
-    title: `${i.name} Invoice Generator - Free Invoice Template for ${i.name}s`,
+    title: `${i.name} Invoice Generator - Free Invoice Template`,
     description: i.description,
     alternates: { canonical: `${BASE_URL}/industry/${industry}` },
   };
