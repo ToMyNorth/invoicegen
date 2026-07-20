@@ -10,12 +10,18 @@ interface InvoiceGeneratorProps {
   initialCurrency?: string;
   title?: string;
   description?: string;
+  seoIntro?: {
+    heading: string;
+    paragraphs: string[];
+    bullets?: string[];
+  };
 }
 
 export default function InvoiceGenerator({
   initialCurrency = 'usd',
   title = 'Free Invoice Generator',
   description = 'Create professional invoices in seconds. Free, no signup required.',
+  seoIntro,
 }: InvoiceGeneratorProps) {
   const [data, setData] = useState<InvoiceData>(() => getDefaultInvoiceData(initialCurrency));
 
@@ -42,6 +48,26 @@ export default function InvoiceGenerator({
 
       {/* SEO Content Section */}
       <div className="mt-16 max-w-4xl mx-auto">
+        {seoIntro && (
+          <section className="mb-12 rounded-xl border border-gray-200 bg-white p-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">{seoIntro.heading}</h2>
+            <div className="space-y-3 text-gray-600">
+              {seoIntro.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            {seoIntro.bullets && (
+              <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {seoIntro.bullets.map((bullet) => (
+                  <li key={bullet} className="rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-700">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        )}
+
         <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Create an Invoice</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center p-6 bg-blue-50 rounded-xl">

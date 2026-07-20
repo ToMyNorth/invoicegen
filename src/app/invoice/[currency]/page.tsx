@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { currencies, getCurrency } from '@/data/invoice-data';
 import InvoiceGenerator from '@/components/InvoiceGenerator';
 
+const BASE_URL = 'https://www.invoicegen.one';
+
 interface Props {
   params: Promise<{ currency: string }>;
 }
@@ -18,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Free ${curr.name} Invoice Generator - Create ${curr.symbol} Invoices Online`,
     description: `Create professional invoices in ${curr.name} (${curr.symbol}). Free invoice generator for ${curr.code.toUpperCase()} currency. Download as PDF, no signup required.`,
-    alternates: { canonical: `https://invoicegen.com/invoice/${currency}` },
+    alternates: { canonical: `${BASE_URL}/invoice/${currency}` },
   };
 }
 
@@ -44,6 +46,19 @@ export default async function CurrencyInvoicePage({ params }: Props) {
         initialCurrency={currency}
         title={`Free ${curr.name} (${curr.symbol}) Invoice Generator`}
         description={`Create professional invoices in ${curr.name}. Free, no signup required. Download as PDF.`}
+        seoIntro={{
+          heading: `Create invoices in ${curr.name}`,
+          paragraphs: [
+            `Use this ${curr.name} invoice generator when you need a clean invoice with ${curr.symbol} currency formatting.`,
+            `Add client details, itemized services or products, tax, discount, notes, and payment terms, then download a PDF invoice ready to send.`,
+          ],
+          bullets: [
+            `${curr.code.toUpperCase()} currency formatting`,
+            'Editable invoice line items',
+            'Tax, discount, and notes fields',
+            'Free PDF invoice download',
+          ],
+        }}
       />
     </>
   );
