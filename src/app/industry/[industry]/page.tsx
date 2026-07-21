@@ -45,6 +45,30 @@ export default async function IndustryInvoicePage({ params }: Props) {
           'Tax and discount support',
           'Clean invoice preview before download',
         ],
+        examples: i.sampleItems ? {
+          heading: `Common ${i.name.toLowerCase()} invoice line items`,
+          items: i.sampleItems,
+        } : undefined,
+        tips: i.invoiceTips ? {
+          heading: `${i.name} invoice checklist`,
+          items: i.invoiceTips,
+        } : undefined,
+        faqs: industry === 'landscaping' ? [
+          {
+            q: 'What should a landscaping invoice include?',
+            a: 'A landscaping invoice should include the property or client details, service dates, itemized labor, materials, tax, payment terms, and notes about recurring maintenance or follow-up work.',
+          },
+          {
+            q: 'Can I use this for lawn care and yard maintenance?',
+            a: 'Yes. The template works for lawn mowing, edging, cleanup, planting, irrigation repair, seasonal maintenance, and other landscaping services.',
+          },
+        ] : undefined,
+        relatedLinks: [
+          { label: 'Service invoice template', href: '/templates/service-invoice' },
+          { label: 'Blank invoice template', href: '/templates/blank-invoice' },
+          { label: 'Freelance invoice template', href: '/templates/freelance-invoice' },
+          { label: 'New Zealand invoice generator', href: '/country/new-zealand' },
+        ],
       }}
     />
   );

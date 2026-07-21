@@ -46,6 +46,29 @@ export default async function CountryInvoicePage({ params }: Props) {
           'Professional PDF invoice output',
           'Suitable for freelancers and small businesses',
         ],
+        examples: c.paymentTerms ? {
+          heading: `Common ${c.name} invoice payment terms`,
+          items: c.paymentTerms,
+        } : undefined,
+        tips: c.invoiceTips ? {
+          heading: `${c.name} invoice checklist`,
+          items: c.invoiceTips,
+        } : undefined,
+        faqs: country === 'new-zealand' ? [
+          {
+            q: 'Can I create a New Zealand invoice in NZD?',
+            a: 'Yes. This page starts with New Zealand Dollar settings so you can create an NZD invoice and download it as a PDF.',
+          },
+          {
+            q: 'Does this New Zealand invoice generator include GST?',
+            a: 'Yes. The invoice form includes an editable GST tax field, so you can set the rate that applies to your invoice.',
+          },
+        ] : undefined,
+        relatedLinks: [
+          { label: 'Blank invoice template', href: '/templates/blank-invoice' },
+          { label: 'Service invoice template', href: '/templates/service-invoice' },
+          { label: 'Freelance invoice template', href: '/templates/freelance-invoice' },
+        ],
       }}
     />
   );

@@ -46,6 +46,8 @@ export interface Country {
   name: string;
   currency: string;
   taxLabel: string;
+  paymentTerms?: string[];
+  invoiceTips?: string[];
 }
 
 export interface Industry {
@@ -53,4 +55,6 @@ export interface Industry {
   name: string;
   description: string;
   defaultNotes: string;
+  sampleItems?: string[];
+  invoiceTips?: string[];
 }

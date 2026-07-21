@@ -14,6 +14,22 @@ interface InvoiceGeneratorProps {
     heading: string;
     paragraphs: string[];
     bullets?: string[];
+    examples?: {
+      heading: string;
+      items: string[];
+    };
+    tips?: {
+      heading: string;
+      items: string[];
+    };
+    faqs?: {
+      q: string;
+      a: string;
+    }[];
+    relatedLinks?: {
+      label: string;
+      href: string;
+    }[];
   };
 }
 
@@ -24,6 +40,14 @@ export default function InvoiceGenerator({
   seoIntro,
 }: InvoiceGeneratorProps) {
   const [data, setData] = useState<InvoiceData>(() => getDefaultInvoiceData(initialCurrency));
+  const defaultFaqs = [
+    { q: 'Is this invoice generator really free?', a: 'Yes, completely free. No signup required, no hidden fees. Create and download unlimited invoices as PDF.' },
+    { q: 'Can I use these invoices for my business?', a: 'Absolutely. Our invoices are professionally formatted and suitable for any business, freelancer, or contractor.' },
+    { q: 'What currencies are supported?', a: 'We support 20+ currencies including USD, EUR, GBP, CAD, AUD, JPY, CNY, INR, and many more.' },
+    { q: 'Is my data stored anywhere?', a: 'No. Everything happens in your browser. We do not store any of your invoice data on our servers.' },
+    { q: 'Can I customize the invoice template?', a: 'Yes, we offer Modern, Classic, and Minimal templates. You can also adjust tax rates and add discounts.' },
+  ];
+  const faqs = seoIntro?.faqs ? [...seoIntro.faqs, ...defaultFaqs] : defaultFaqs;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -65,6 +89,49 @@ export default function InvoiceGenerator({
                 ))}
               </ul>
             )}
+            {seoIntro.examples && (
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">{seoIntro.examples.heading}</h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {seoIntro.examples.items.map((item) => (
+                    <li key={item} className="border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {seoIntro.tips && (
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">{seoIntro.tips.heading}</h3>
+                <ol className="space-y-3">
+                  {seoIntro.tips.items.map((item, index) => (
+                    <li key={item} className="flex gap-3 text-sm text-gray-700">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-semibold text-white">
+                        {index + 1}
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+            {seoIntro.relatedLinks && (
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Related invoice tools</h3>
+                <div className="flex flex-wrap gap-3">
+                  {seoIntro.relatedLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:border-blue-300 hover:text-blue-700"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
         )}
 
@@ -91,13 +158,7 @@ export default function InvoiceGenerator({
         <div id="faq" className="mt-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
           <div className="space-y-4">
-            {[
-              { q: 'Is this invoice generator really free?', a: 'Yes, completely free. No signup required, no hidden fees. Create and download unlimited invoices as PDF.' },
-              { q: 'Can I use these invoices for my business?', a: 'Absolutely. Our invoices are professionally formatted and suitable for any business, freelancer, or contractor.' },
-              { q: 'What currencies are supported?', a: 'We support 20+ currencies including USD, EUR, GBP, CAD, AUD, JPY, CNY, INR, and many more.' },
-              { q: 'Is my data stored anywhere?', a: 'No. Everything happens in your browser. We do not store any of your invoice data on our servers.' },
-              { q: 'Can I customize the invoice template?', a: 'Yes, we offer Modern, Classic, and Minimal templates. You can also adjust tax rates and add discounts.' },
-            ].map((faq, i) => (
+            {faqs.map((faq, i) => (
               <details key={i} className="group bg-white border border-gray-200 rounded-xl p-4">
                 <summary className="font-medium text-gray-900 cursor-pointer list-none flex justify-between items-center">
                   {faq.q}

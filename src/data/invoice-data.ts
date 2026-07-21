@@ -42,7 +42,18 @@ export const countries: Country[] = [
   { code: 'south-africa', name: 'South Africa', currency: 'zar', taxLabel: 'VAT' },
   { code: 'switzerland', name: 'Switzerland', currency: 'chf', taxLabel: 'MWST' },
   { code: 'sweden', name: 'Sweden', currency: 'sek', taxLabel: 'Moms' },
-  { code: 'new-zealand', name: 'New Zealand', currency: 'nzd', taxLabel: 'GST' },
+  {
+    code: 'new-zealand',
+    name: 'New Zealand',
+    currency: 'nzd',
+    taxLabel: 'GST',
+    paymentTerms: ['7 days', '14 days', '20th of the following month'],
+    invoiceTips: [
+      'Use NZD for the invoice total when billing New Zealand clients.',
+      'Add a GST line when you are GST registered and the sale is taxable.',
+      'Include your payment instructions and due date clearly so clients can pay on time.',
+    ],
+  },
   { code: 'uae', name: 'United Arab Emirates', currency: 'aed', taxLabel: 'VAT' },
 ];
 
@@ -52,6 +63,12 @@ export const industries: Industry[] = [
     name: 'Freelancer',
     description: 'Free invoice generator for freelancers and independent contractors. Create professional invoices in minutes.',
     defaultNotes: 'Thank you for your business. Payment is due within 30 days.',
+    sampleItems: ['Website updates', 'Content writing', 'Hourly consulting', 'Project milestone payment'],
+    invoiceTips: [
+      'Use a clear project name in each line item so clients can match the invoice to approved work.',
+      'Add your preferred payment method and late payment terms in the notes field.',
+      'Keep a consistent invoice number format for easier bookkeeping.',
+    ],
   },
   {
     slug: 'consulting',
@@ -82,6 +99,12 @@ export const industries: Industry[] = [
     name: 'Landscaping',
     description: 'Landscaping and lawn care invoice templates with itemized services.',
     defaultNotes: 'Landscaping services completed as agreed. Payment due within 15 days.',
+    sampleItems: ['Lawn mowing and edging', 'Mulch installation', 'Garden cleanup', 'Irrigation repair', 'Seasonal yard maintenance'],
+    invoiceTips: [
+      'Separate labor, materials, and recurring maintenance so property owners can review the bill quickly.',
+      'Add service dates or property location details for multi-site landscaping work.',
+      'Use notes for deposit terms, weather delays, and follow-up maintenance recommendations.',
+    ],
   },
   {
     slug: 'tutoring',
