@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-6">
           <div>
             <h3 className="text-white font-bold text-lg mb-4">InvoiceGen</h3>
             <p className="text-sm text-gray-400">Free online invoice generator. Create professional invoices in seconds, no signup required.</p>
@@ -65,6 +65,15 @@ export default function Footer() {
               <li><Link href="/templates/service-invoice" className="hover:text-white transition-colors">Service Invoice</Link></li>
               <li><Link href="/templates/blank-invoice" className="hover:text-white transition-colors">Blank Invoice</Link></li>
               <li><Link href="/templates/proforma-invoice" className="hover:text-white transition-colors">Proforma Invoice</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold mb-3">Company</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">Terms</Link></li>
             </ul>
           </div>
         </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { InvoiceData } from '@/lib/types';
 import { calculateSubtotal, calculateTax, calculateTotal, formatCurrency, formatDate } from '@/lib/utils';
 
@@ -10,7 +10,6 @@ interface InvoicePreviewProps {
 
 export default function InvoicePreview({ data }: InvoicePreviewProps) {
   const invoiceRef = useRef<HTMLDivElement>(null);
-  const [isGenerating, setIsGenerating] = useState(false);
 
   const subtotal = calculateSubtotal(data.items);
   const tax = calculateTax(subtotal, data.taxRate);
@@ -37,6 +36,14 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
       alert('Please allow popups to download PDF');
       return;
     }
+
+    const analyticsWindow = window as Window & {
+      gtag?: (...args: unknown[]) => void;
+    };
+    analyticsWindow.gtag?.('event', 'invoice_pdf_download', {
+      currency: data.currency,
+      invoice_template: data.template,
+    });
 
     // Get the invoice HTML
     const invoiceHTML = invoiceRef.current.outerHTML;
